@@ -3,9 +3,8 @@ ip: 33.33.33.34
 hostname: myapp
 
 mysql:
-  auth:
-    user: user
-    pass: pass
+  user: user
+  pass: pass
 
 # https://ngrok.com/
 ngrok:
