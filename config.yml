@@ -1,0 +1,27 @@
+# If hostname is "myapp", the domain will be "myapp.dev".
+ip: 33.33.33.34
+hostname: myapp
+
+mysql:
+  auth:
+    user: user
+    pass: pass
+
+# https://ngrok.com/
+ngrok:
+  authtoken: dfasdfasdfasdfasdfasdfasdf
+
+# https://mailtrap.io/
+mailtrap:
+  user: asdfasdfasdfa
+  pass: asdfasdfasdfa
+
+timezone: America/New_York
+
+# Resources the VM can use from the host machine.
+vm:
+  # Amount of memory in MB.
+  memory: 2048
+  # Percent of CPU.
+  cpu: 50
+  
