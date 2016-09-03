@@ -3,7 +3,7 @@
 PHP_TIMEZONE="$1"
 
 # Install PHP
-apt-get install -yqq php5 php5-dev php5-json php5-mysql php5-xdebug php5-apcu php5-curl php5-gd libapache2-mod-php5 php5-mcrypt
+apt-get install -yqq php5 php5-dev php5-json php5-mysql php5-xdebug php5-apcu php5-curl php5-gd libapache2-mod-php5 php5-mcrypt php5-xdebug
 
 # Configure PHP
 sed -i -r 's/memory_limit = 128M/memory_limit = 512M/' /etc/php5/apache2/php.ini
