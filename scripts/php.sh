@@ -37,4 +37,6 @@ tee -a /etc/bashrc << EOF
 export PATH=\$PATH:\$HOME/.composer/vendor/bin
 EOF
 
+chown -R vagrant:vagrant /home/vagrant/.composer
+
 service apache2 restart
