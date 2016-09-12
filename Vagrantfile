@@ -1,5 +1,9 @@
 require 'yaml'
 
+if !File.exists? ("config.yml")
+  abort "\nERROR: config.yml does not exist.\n\n"
+end
+
 settings = YAML.load_file 'config.yml'
 
 VAGRANTFILE_API_VERSION = 2
