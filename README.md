@@ -14,6 +14,6 @@ An Ubuntu based Vagrantfile with options to include MySQL, PHP, and more.
 
 Download a copy of this repo, and place it in the same directory as your code.
 
-Edit the file `config.yml`.
+Copy `config-sample.yml` to `config.yml`. In this file you will configure your Vagrant box.
 
-Finally, run a `vagrant up` to start your Vagrant box.
+Finally, run `vagrant up` to start your Vagrant box.
