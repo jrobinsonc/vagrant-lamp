@@ -35,9 +35,7 @@ sed -ir 's/export APACHE_RUN_GROUP=.*/export APACHE_RUN_GROUP=vagrant/' /etc/apa
 # Enable common modules
 a2enmod rewrite headers expires vhost_alias
 
-# Allow all users to tail the logs
-chmod 777 /var/log/apache2/
-
+chown -R vagrant:vagrant /var/log/apache2
 chown -R vagrant:vagrant /var/lock/apache2
 
 service apache2 restart
