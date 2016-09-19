@@ -52,7 +52,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Setup the hosts
   # This requires the hosts provisioner plugin to be installed: vagrant plugin install vagrant-hosts-provisioner
   config.vm.provision :hostsupdate, run: 'always' do |host|
-    host.hostname = settings['hostname']
+    host.hostname = "#{settings['hostname']}.dev"
     host.manage_guest = true
     host.manage_host = true
     host.aliases = []
