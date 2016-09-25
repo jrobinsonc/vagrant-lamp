@@ -6,16 +6,17 @@ APACHE_DOCUMENT_ROOT="$2"
 apt-get install -yqq apache2
 
 # Configure Apache
-rm -f /etc/apache2/sites-available/000-default.conf
-rm -f /etc/apache2/sites-enabled/000-default.conf
-
-tee /etc/apache2/sites-enabled/000-default.conf << EOF
+tee /etc/apache2/sites-available/000-default.conf << EOF
 <VirtualHost *:80>
     DocumentRoot $APACHE_DOCUMENT_ROOT
     ServerName $APACHE_HOSTNAME
+    ServerAdmin webmaster@localhost
 
     # Allow Apache to properly read files from the synced folders
     EnableSendfile off
+
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
 
     <Directory "$APACHE_DOCUMENT_ROOT">
         Options Indexes FollowSymLinks MultiViews
@@ -29,23 +30,14 @@ tee /etc/apache2/sites-enabled/000-default.conf << EOF
 EOF
 
 # Make apache run as vagrant
-sed -ir 's/export APACHE_RUN_USER=.*/export APACHE_RUN_USER=vagrant/' /etc/apache2/envvars
-sed -ir 's/export APACHE_RUN_GROUP=.*/export APACHE_RUN_GROUP=vagrant/' /etc/apache2/envvars
+sed -i -r 's/export APACHE_RUN_USER=.*/export APACHE_RUN_USER=vagrant/' /etc/apache2/envvars
+sed -i -r 's/export APACHE_RUN_GROUP=.*/export APACHE_RUN_GROUP=vagrant/' /etc/apache2/envvars
 
 # Enable common modules
 a2enmod rewrite headers expires vhost_alias
 
 chown -R vagrant:vagrant /var/log/apache2
 chown -R vagrant:vagrant /var/lock/apache2
+chown -R vagrant:vagrant $APACHE_DOCUMENT_ROOT
 
 service apache2 restart
-
-# Restart Apache if not running
-# tee -a /etc/bashrc << EOF
-
-# IS_APACHE_RUNNING=\$( ps aux | grep apache2 | grep -v grep | wc -l )
-# if [ "\$PS1" ] && [ "\$IS_APACHE_RUNNING" = "0" ]; then
-#     echo "Starting Apache"
-#     sudo service apache2 restart
-# fi
-# EOF
