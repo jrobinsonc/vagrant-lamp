@@ -9,6 +9,8 @@ debconf-set-selections <<< "mysql-server mysql-server/root_password_again passwo
 
 apt-get install -yqq mysql-server mysql-client
 
+#mysqladmin -u root password newpass
+
 # Enable remote access to MySQL
 #sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
 
